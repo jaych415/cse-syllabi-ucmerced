@@ -7,15 +7,156 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="https://www.ucmerced.edu/sites/all/themes/uc_merced_2020/favicon.ico">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>UC Merced Computer Science & Engineering</h1>
-            <h2>Course Syllabi Repository</h2>
+            <div class="header-content">
+                <img src="https://www.ucmerced.edu/sites/default/files/inline-images/uc-merced-logo-blue.png" 
+                     alt="UC Merced Logo" class="logo">
+                <div class="header-text">
+                    <h1>UC Merced Computer Science & Engineering</h1>
+                    <h2>Course Syllabi Repository</h2>
+                </div>
+            </div>
+            <p class="subtitle">Access and download syllabi for CSE 100-188 courses. Search and filter to find specific courses.</p>
         </header>
-        <div id="courseList" class="course-grid"></div>
+
+        <div class="stats-bar">
+            <div class="stat">
+                <span class="stat-number" id="totalCourses">0</span>
+                <span class="stat-label">Total Courses</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number" id="totalSyllabi">0</span>
+                <span class="stat-label">Available Syllabi</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number" id="availablePercentage">0%</span>
+                <span class="stat-label">Availability</span>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search courses (e.g., 'AI', 'Database', 'Security')...">
+            </div>
+            <div class="filter-controls">
+                <select id="availabilityFilter">
+                    <option value="">All Courses</option>
+                    <option value="has-syllabi">With Syllabi</option>
+                    <option value="no-syllabi">Without Syllabi</option>
+                </select>
+                <button id="showAllBtn" class="action-btn">
+                    <i class="fas fa-eye"></i> Show All
+                </button>
+                <button id="exportBtn" class="action-btn export">
+                    <i class="fas fa-download"></i> Export List
+                </button>
+            </div>
+        </div>
+
+        <main>
+            <div class="table-container">
+                <table class="courses-table">
+                    <thead>
+                        <tr>
+                            <th class="sortable" data-sort="code">
+                                Course Code <i class="fas fa-sort"></i>
+                            </th>
+                            <th class="sortable" data-sort="title">
+                                Course Title <i class="fas fa-sort"></i>
+                            </th>
+                            <th>Units</th>
+                            <th>Prerequisites</th>
+                            <th class="sortable" data-sort="syllabi">
+                                Syllabi <i class="fas fa-sort"></i>
+                            </th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="coursesTableBody">
+                        <!-- Courses will be inserted here by JavaScript -->
+                    </tbody>
+                </table>
+                <div id="noResults" class="no-results" style="display: none;">
+                    <i class="fas fa-search"></i>
+                    <h3>No courses found</h3>
+                    <p>Try adjusting your search or filter criteria</p>
+                </div>
+            </div>
+
+            <div class="legend">
+                <div class="legend-item">
+                    <span class="legend-color available"></span>
+                    <span>Syllabi Available</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color not-available"></span>
+                    <span>No Syllabi Yet</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color core"></span>
+                    <span>Core Course</span>
+                </div>
+            </div>
+
+            <div class="note">
+                <i class="fas fa-info-circle"></i>
+                <p>Click on syllabus buttons to download PDFs. Courses are from the UC Merced CSE 100-188 series.</p>
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4><i class="fas fa-university"></i> About This Repository</h4>
+                    <p>This is an unofficial collection of CSE 100-188 course syllabi from UC Merced. For official information, visit the <a href="https://cse.ucmerced.edu/" target="_blank">CSE Department website</a>.</p>
+                </div>
+                <div class="footer-section">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Disclaimer</h4>
+                    <p>Syllabi are for informational purposes only and may be outdated. Always verify with current course instructors for the most accurate information.</p>
+                </div>
+                <div class="footer-section">
+                    <h4><i class="fas fa-share-alt"></i> Contribute</h4>
+                    <p>To add or update syllabi, please contact the CSE department office or submit corrections through the department website.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© <span id="currentYear"></span> University of California, Merced • Computer Science & Engineering Department</p>
+                <p class="last-updated">Course listing last updated: <span id="lastUpdated"></span></p>
+            </div>
+        </footer>
     </div>
+
+    <!-- Modal for syllabus preview -->
+    <div id="syllabusModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><span id="modalCourseCode"></span> Syllabus Preview</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-info">
+                    <p><strong>Course:</strong> <span id="modalCourseTitle"></span></p>
+                    <p><strong>Semester:</strong> <span id="modalSemester"></span></p>
+                    <p><strong>Instructor:</strong> <span id="modalInstructor"></span></p>
+                    <p><strong>File Size:</strong> <span id="modalFileSize"></span></p>
+                </div>
+                <div class="modal-actions">
+                    <a id="modalDownloadBtn" class="download-btn large" target="_blank">
+                        <i class="fas fa-file-pdf"></i> Download PDF
+                    </a>
+                    <button id="modalCloseBtn" class="cancel-btn">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
