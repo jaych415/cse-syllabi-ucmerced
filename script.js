@@ -7,37 +7,34 @@ const courses = [
       prerequisites: "CSE 040, CSE 060",
       isCore: true,
       syllabi: [
-          { semester: "Spring 2023", instructor: "Dr. Smith", url: "https://example.com/cse100-spring2023.pdf" },
-          { semester: "Fall 2022", instructor: "Prof. Johnson", url: "https://example.com/cse100-fall2022.pdf" }
+          { semester: "Spring 2017", instructor: "Sungjim Im", url: "files/CSE100_SP17.pdf" },
       ]
   },
   {
       code: "CSE 106",
       title: "Exploratory Computing",
       units: 4,
-      prerequisites: "CSE 030 or equivalent",
+      prerequisites: "CSE 030, CSE 100, Math 024",
       isCore: false,
-      syllabi: [
-          { semester: "Fall 2023", instructor: "Dr. Williams", url: "https://example.com/cse106-fall2023.pdf" }
-      ]
+      syllabi: []
   },
   {
       code: "CSE 107",
       title: "Introduction to Digital Image Processing",
       units: 4,
-      prerequisites: "CSE 040, MATH 021",
+      prerequisites: "CSE 030",
       isCore: false,
-      syllabi: []
+      syllabi: [{ semester: "Fall 2025", instructor: "Shawn Newsome", url: "files/CSE107_FA25.pdf" }
+      ]
   },
   {
       code: "CSE 108",
       title: "Full Stack Web Development",
       units: 4,
-      prerequisites: "CSE 040",
+      prerequisites: "CSE 030",
       isCore: true,
       syllabi: [
-          { semester: "Spring 2023", instructor: "Prof. Davis", url: "https://example.com/cse108-spring2023.pdf" },
-          { semester: "Fall 2022", instructor: "Dr. Miller", url: "https://example.com/cse108-fall2022.pdf" }
+          { semester: "Fall 2025", instructor: "Ammon Hepworth", url: "file/CSE107_FA25.pdf" },
       ]
   },
   {
@@ -56,9 +53,7 @@ const courses = [
       units: 4,
       prerequisites: "CSE 040",
       isCore: true,
-      syllabi: [
-          { semester: "Spring 2023", instructor: "Prof. Wilson", url: "https://example.com/cse120-spring2023.pdf" }
-      ]
+      syllabi: []
   },
   {
       code: "CSE 126",
@@ -74,9 +69,7 @@ const courses = [
       units: 4,
       prerequisites: "CSE 040, MATH 021",
       isCore: false,
-      syllabi: [
-          { semester: "Fall 2023", instructor: "Dr. Taylor", url: "https://example.com/cse130-fall2023.pdf" }
-      ]
+      syllabi: []
   },
   {
       code: "CSE 135",
@@ -92,17 +85,17 @@ const courses = [
       units: 4,
       prerequisites: "CSE 040",
       isCore: true,
-      syllabi: [
-          { semester: "Spring 2023", instructor: "Prof. Anderson", url: "https://example.com/cse140-spring2023.pdf" }
-      ]
+      syllabi: []
   },
   {
       code: "CSE 141",
       title: "Introduction to Compiler Construction",
       units: 4,
-      prerequisites: "CSE 100, CSE 140",
+      prerequisites: "CSE 031/EE 060, CSE 100, Math 024",   
       isCore: false,
-      syllabi: []
+      syllabi: [
+        { semester: "Spring 2026", instructor: "Pengfei Su", url: "files/CSE141_FA25.pdf" }
+      ]
   },
   {
       code: "CSE 150",
@@ -111,7 +104,7 @@ const courses = [
       prerequisites: "CSE 040, CSE 140",
       isCore: true,
       syllabi: [
-          { semester: "Spring 2025", instructor: "Wan Du", url: "CSE150_SP25.pdf" }
+          { semester: "Spring 2025", instructor: "Wan Du", url: "files/CSE150_SP25.pdf" }
       ]
   },
   {
@@ -128,9 +121,7 @@ const courses = [
       units: 4,
       prerequisites: "CSE 040",
       isCore: false,
-      syllabi: [
-          { semester: "Spring 2023", instructor: "Dr. White", url: "https://example.com/cse155-spring2023.pdf" }
-      ]
+      syllabi: []
   },
   {
       code: "CSE 157",
@@ -146,9 +137,7 @@ const courses = [
       units: 4,
       prerequisites: "CSE 040",
       isCore: true,
-      syllabi: [
-          { semester: "Fall 2023", instructor: "Prof. Harris", url: "https://example.com/cse160-fall2023.pdf" }
-      ]
+      syllabi: []
   },
   {
       code: "CSE 162",
@@ -164,9 +153,7 @@ const courses = [
       units: 4,
       prerequisites: "CSE 040",
       isCore: false,
-      syllabi: [
-          { semester: "Fall 2023", instructor: "Dr. Martin", url: "https://example.com/cse165-fall2023.pdf" }
-      ]
+      syllabi: []
   },
   {
       code: "CSE 168",
@@ -182,9 +169,7 @@ const courses = [
       units: 4,
       prerequisites: "CSE 040, MATH 021",
       isCore: false,
-      syllabi: [
-          { semester: "Spring 2023", instructor: "Prof. Thompson", url: "https://example.com/cse170-spring2023.pdf" }
-      ]
+      syllabi: []
   },
   {
       code: "CSE 171",
@@ -208,10 +193,7 @@ const courses = [
       units: 4,
       prerequisites: "CSE 100",
       isCore: true,
-      syllabi: [
-          { semester: "Fall 2023", instructor: "Dr. Garcia", url: "https://example.com/cse175-fall2023.pdf" },
-          { semester: "Spring 2023", instructor: "Prof. Martinez", url: "https://example.com/cse175-spring2023.pdf" }
-      ]
+      syllabi: []
   },
   {
       code: "CSE 176",
@@ -219,9 +201,7 @@ const courses = [
       units: 4,
       prerequisites: "CSE 100, MATH 032",
       isCore: true,
-      syllabi: [
-          { semester: "Fall 2023", instructor: "Dr. Robinson", url: "https://example.com/cse176-fall2023.pdf" }
-      ]
+      syllabi: []
   },
   {
       code: "CSE 177",
@@ -237,9 +217,7 @@ const courses = [
       units: 4,
       prerequisites: "CSE 130, CSE 160",
       isCore: false,
-      syllabi: [
-          { semester: "Spring 2023", instructor: "Prof. Clark", url: "https://example.com/cse178-spring2023.pdf" }
-      ]
+      syllabi: []
   },
   {
       code: "CSE 179",
@@ -255,9 +233,7 @@ const courses = [
       units: 4,
       prerequisites: "CSE 040, MATH 021",
       isCore: false,
-      syllabi: [
-          { semester: "Fall 2023", instructor: "Dr. Rodriguez", url: "https://example.com/cse180-fall2023.pdf" }
-      ]
+      syllabi: []
   },
   {
       code: "CSE 185",
@@ -265,9 +241,7 @@ const courses = [
       units: 4,
       prerequisites: "CSE 100, MATH 032",
       isCore: false,
-      syllabi: [
-          { semester: "Spring 2023", instructor: "Prof. Lewis", url: "https://example.com/cse185-spring2023.pdf" }
-      ]
+      syllabi: []
   },
   {
       code: "CSE 188",
@@ -275,9 +249,7 @@ const courses = [
       units: 4,
       prerequisites: "CSE 100, CSE 175",
       isCore: false,
-      syllabi: [
-          { semester: "Fall 2023", instructor: "Dr. Lee", url: "https://example.com/cse188-fall2023.pdf" }
-      ]
+      syllabi: []
   }
 ];
 
