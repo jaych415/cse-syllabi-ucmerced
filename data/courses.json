@@ -1,0 +1,11 @@
+[
+  {
+    "code": "CSE 020",
+    "title": "Introduction to Computing I",
+    "units": 4,
+    "level": 100,
+    "description": "Introduction to problem solving using computers.",
+    "prerequisites": "None",
+    "syllabi": []
+  }
+]
